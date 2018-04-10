@@ -1,4 +1,4 @@
-const model = require('../models/cat')
+const model = require('../models/book')
 
 function getAll (req, res, next) {
   const limit = req.query.limit
@@ -10,7 +10,7 @@ function create (req, res, next) {
   const result = model.create(req.body)
 
   if (result.errors) {
-    return next({ status: 400, message: `Could not create new cat`, errors: result.errors })
+    return next({ status: 400, message: `Could not create new book`, errors: result.errors })
   }
 
   res.status(201).json({ data: result })

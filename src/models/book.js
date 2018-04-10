@@ -1,8 +1,8 @@
 const uuid = require('uuid/v4')
-const cats = []
+const books = []
 
 function getAll (limit) {
-  return limit ? cats.slice(0, limit) : cats
+  return limit ? books.slice(0, limit) : books
 }
 
 function create (body) {
@@ -14,9 +14,9 @@ function create (body) {
     errors.push('name is required')
     response = { errors }
   } else {
-    const cat = { id: uuid(), name }
-    cats.push(cat)
-    response = cat
+    const book = { id: uuid(), name }
+    books.push(book)
+    response = book
   }
 
   return response
@@ -24,8 +24,8 @@ function create (body) {
 
 function show (limit, id) {
   console.log(id)
-  console.log(cats);
-  return cats.find(el => el.id === id)
+  console.log(books);
+  return books.find(el => el.id === id)
 }
 
 
