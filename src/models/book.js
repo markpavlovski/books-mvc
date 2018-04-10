@@ -1,13 +1,23 @@
 const uuid = require('uuid/v4')
 const books = []
 
-function getAll (limit) {
-  return limit ? books.slice(0, limit) : books
+
+class Book {
+  constructor({name,description,authors}){
+    this.name = name
+    this.desription = description
+    this.authors = authors
+    this.id = uuid()
+    this.borrowed = false
+  }
 }
 
-function create (body) {
-  const errors = []
+let getAll = () => books
+let show = (id) => books.find(el => el.id === id)
+let create = (body) => {
+  console.log(body);
   const name = body.name
+
 
   let response
   if (!name) {
@@ -22,11 +32,7 @@ function create (body) {
   return response
 }
 
-function show (limit, id) {
-  console.log(id)
-  console.log(books);
-  return books.find(el => el.id === id)
-}
+
 
 
 module.exports = { getAll, create, show }
