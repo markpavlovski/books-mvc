@@ -15,16 +15,15 @@ class Book {
 let getAll = () => books
 let show = (id) => books.find(el => el.id === id)
 let create = (body) => {
-  console.log(body);
+
   const name = body.name
+  let response = null
 
-
-  let response
   if (!name) {
     errors.push('name is required')
     response = { errors }
   } else {
-    const book = { id: uuid(), name }
+    const book = new Book({name: "A", description: "descriptionnnn", authors: ["B","C"]})
     books.push(book)
     response = book
   }

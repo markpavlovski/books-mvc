@@ -1,8 +1,7 @@
 const model = require('../models/book')
 
 function getAll (req, res, next) {
-  const limit = req.query.limit
-  const data = model.getAll(limit)
+  const data = model.getAll()
   res.status(200).json({ data })
 }
 
@@ -17,12 +16,25 @@ function create (req, res, next) {
 }
 
 function show (req, res, next) {
-  const limit = req.query.limit
   const id = req.params.id
-  const data = model.show(limit,id)
+  const data = model.show(id)
+  res.status(200).json({ data })
+}
+
+function modify (req, res, next) {
+  const id = req.params.id
+  const data = model.show(id)
+  res.status(200).json({ data })
+}
+
+function remove (req, res, next) {
+  const id = req.params.id
+  const data = model.show(id)
   res.status(200).json({ data })
 }
 
 
 
-module.exports = { getAll, create, show }
+
+
+module.exports = { getAll, create, show, modify, remove }
