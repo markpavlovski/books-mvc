@@ -2,6 +2,7 @@ const uuid = require('uuid/v4')
 const books = []
 
 
+
 class Book {
   constructor({name,description,authors}){
     this.name = name
@@ -18,6 +19,7 @@ let show = (id) => books.find(el => el.id === id)
 let create = ({name = "", description = "", authors=""}) => {
 
   let response = null
+  let errors = []
 
   if (!name) {
     errors.push('name is required')
@@ -27,13 +29,16 @@ let create = ({name = "", description = "", authors=""}) => {
     books.push(book)
     response = book
   }
-  console.log(response.name);
   return response
 }
 
 let modify = (id, {name ="", description="", authors="", borrowed = null}) => {
   const book = books.find(el => el.id === id)
-
+  let errors = []
+  if (!book) {
+    errors.push('no such id exists')
+    return {errors}
+  }
   if (name) book.name = name
   if (description) book.description = description
   if (authors) book.authors = authors.split(", ")
@@ -45,6 +50,11 @@ let modify = (id, {name ="", description="", authors="", borrowed = null}) => {
 
 let remove = (id) => {
   const book = books.find(el => el.id === id)
+  let errors = []
+  if (!book) {
+    errors.push('no such id exists')
+    return {errors}
+  }
   let index = books.findIndex(el => el.id === id)
   return books.splice(index, 1)
 }
