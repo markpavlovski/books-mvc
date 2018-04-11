@@ -6,7 +6,7 @@ class Book {
   constructor({name,description,authors}){
     this.name = name
     this.desription = description
-    this.authors = authors
+    this.authors = authors.split(", ")
     this.id = uuid()
     this.borrowed = false
   }
@@ -14,24 +14,37 @@ class Book {
 
 let getAll = () => books
 let show = (id) => books.find(el => el.id === id)
-let create = (body) => {
 
-  const name = body.name
+let create = ({name = "", description = "", authors=""}) => {
+
   let response = null
 
   if (!name) {
     errors.push('name is required')
     response = { errors }
   } else {
-    const book = new Book({name: "A", description: "descriptionnnn", authors: ["B","C"]})
+    const book = new Book({name, description, authors})
     books.push(book)
     response = book
   }
-
+  console.log(response.name);
   return response
+}
+
+let modify = (id, {name ="", description="", authors="", borrowed = null}) => {
+  console.log(id,{name, description, authors})
+  const book = books.find(el => el.id === id)
+
+  if (name) book.name = name
+  if (description) book.description = description
+  if (authors) book.authors = authors.split(", ")
+  if (borrowed !== null && borrowed !== book.borrowed) book.borrowed = borrowed
+
+
+  return book
+
 }
 
 
 
-
-module.exports = { getAll, create, show }
+module.exports = { getAll, create, show, modify }

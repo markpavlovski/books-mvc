@@ -5,8 +5,8 @@ const ctrl = require('../controllers/books')
 router.get('/', ctrl.getAll)
 router.post('/', ctrl.create)
 router.get('/:id', ctrl.show)
-router.put('/:id', ctrl.modify)
-router.delete('/:id', ctrl.remove)
+router.post('/:id', ctrl.modify)
+router.post('/:id', ctrl.remove)
 
 
 
