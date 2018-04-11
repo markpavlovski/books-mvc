@@ -18,10 +18,7 @@ function create (req, res, next) {
 function show (req, res, next) {
   const id = req.params.id
   const data = model.show(id)
-  //
-  // if (data) {
-  //   return next({ status: 400, message: `book does not exist`, errors: data.errors })
-  // }
+
 
   res.status(200).json({ data })
 }
@@ -29,10 +26,7 @@ function show (req, res, next) {
 function modify (req, res, next) {
   const id = req.params.id
   const data = model.modify(id, req.body)
-  //
-  // if (data) {
-  //   return next({ status: 400, message: `Could not update the book`, errors: data.errors })
-  // }
+
   res.status(200).json({ data })
 }
 
