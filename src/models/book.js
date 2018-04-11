@@ -32,7 +32,6 @@ let create = ({name = "", description = "", authors=""}) => {
 }
 
 let modify = (id, {name ="", description="", authors="", borrowed = null}) => {
-  console.log(id,{name, description, authors})
   const book = books.find(el => el.id === id)
 
   if (name) book.name = name
@@ -40,11 +39,17 @@ let modify = (id, {name ="", description="", authors="", borrowed = null}) => {
   if (authors) book.authors = authors.split(", ")
   if (borrowed !== null && borrowed !== book.borrowed) book.borrowed = borrowed
 
-
   return book
+}
 
+
+let remove = (id) => {
+  const book = books.find(el => el.id === id)
+  let index = books.findIndex(el => el.id === id)
+  return books.splice(index, 1)
 }
 
 
 
-module.exports = { getAll, create, show, modify }
+
+module.exports = { getAll, create, show, modify, remove }
